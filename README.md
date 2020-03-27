@@ -1,0 +1,2 @@
+# RollbackWeapons
+3/26に起こったLGWのロールバックを補填するPlugin
