@@ -1,0 +1,19 @@
+name: ${project.name}
+main: net.azisaba.lgw.rollback.RollbackWeapons
+version: ${project.version}
+author: siloneco
+description: ${project.description}
+website: ${project.url}
+depend: ["CrackShot"]
+commands:
+  rollbackreport:
+    aliases: ["rollbackreports", "rr"]
+    permission: rollbackweapons.command.rollbackreport
+  rollbackitem:
+    aliases: ["rollbackitems", "ri"]
+    permission: rollbackweapons.command.rollbackitem
+permissions:
+  rollbackweapons.command.rollbackreport:
+    default: true
+  rollbackweapons.command.rollbackitem:
+    default: true
