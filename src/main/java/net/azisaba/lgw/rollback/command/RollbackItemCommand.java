@@ -40,6 +40,20 @@ public class RollbackItemCommand implements CommandExecutor {
 
         try {
             data.returnItems(p);
+        } catch (IllegalArgumentException e) {
+            p.sendMessage(Chat.f("&cエラーが発生しました。&e再読み込みを試みています..."));
+            try {
+                if (plugin.getDataContainer().reloadData(p)) {
+                    plugin.getDataContainer().getRollbackData(p.getUniqueId()).returnItems(p);
+                } else {
+                    p.sendMessage(Chat.f("&c再読み込みに失敗しました。運営に報告してください。"));
+                    p.sendMessage(Chat.f("&eデータは残っているため大丈夫です。"));
+                }
+            } catch (Exception ex) {
+                p.sendMessage(Chat.f("&c再読み込みに失敗しました。運営に報告してください。"));
+                p.sendMessage(Chat.f("&eデータは残っているため大丈夫です。"));
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             p.sendMessage(Chat.f("&cエラーが発生したためアイテムを付与できませんでした。"));
             p.sendMessage(Chat.f("&eデータは残っているため大丈夫です。"));

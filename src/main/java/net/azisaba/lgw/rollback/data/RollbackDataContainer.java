@@ -1,6 +1,7 @@
 package net.azisaba.lgw.rollback.data;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -44,5 +45,20 @@ public class RollbackDataContainer {
                 }
             }
         }
+    }
+
+    public boolean reloadData(Player p) {
+        if (!dataMap.containsKey(p.getUniqueId())) {
+            loadRollbackData(p.getUniqueId());
+            return true;
+        }
+
+        if (dataMap.get(p.getUniqueId()).save()) {
+            dataMap.remove(p.getUniqueId());
+        } else {
+            return false;
+        }
+        loadRollbackData(p.getUniqueId());
+        return true;
     }
 }
